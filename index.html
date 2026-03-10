@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>DIY Karaoke STEM Mentor</title>
+
+<style>
+
+body{
+font-family: Arial;
+text-align:center;
+margin:40px;
+}
+
+input{
+width:60%;
+padding:12px;
+font-size:16px;
+}
+
+button{
+padding:10px 20px;
+font-size:16px;
+margin-top:10px;
+}
+
+img{
+max-width:300px;
+margin-top:20px;
+}
+
+#answer{
+margin-top:20px;
+font-size:18px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>DIY Karaoke STEM Mentor</h1>
+
+<p>Ask a question while assembling your Karaoke Kit</p>
+
+<input id="question" placeholder="Example: how to connect battery">
+
+<br><br>
+
+<button onclick="showStep()">Get Help</button>
+
+<div id="image"></div>
+
+<div id="answer"></div>
+
+<script>
+
+function showStep(){
+
+let question=document.getElementById("question").value.toLowerCase();
+
+let image="";
+let answer="";
+
+if(question.includes("battery")){
+image="PASTE_STEP11_IMAGE_LINK";
+answer="Step 11: Place the rechargeable battery correctly and secure it with cable tie.";
+}
+
+else if(question.includes("potentiometer") || question.includes("volume")){
+image="PASTE_STEP17_IMAGE_LINK";
+answer="Step 17: Insert the potentiometer module and tighten the nut. Then place the volume cap.";
+}
+
+else if(question.includes("mic")){
+image="PASTE_STEP4_IMAGE_LINK";
+answer="Step 4: Insert the Mic Jack and Type-C port into the panel carefully.";
+}
+
+else{
+answer="Try asking about battery, microphone, or volume control.";
+}
+
+document.getElementById("image").innerHTML="<img src='"+image+"'>";
+document.getElementById("answer").innerText=answer;
+
+}
+
+</script>
+
+</body>
+</html>
