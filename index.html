@@ -56,7 +56,7 @@ font-size:18px;
 
 <script>
 
-function showStep(){
+async function showStep(){
 
 let question=document.getElementById("question").value.toLowerCase();
 
@@ -65,28 +65,29 @@ let answer="";
 
 if(question.includes("battery")){
 image="https://lh3.googleusercontent.com/d/1738BJTX9RWcECKIPJvlkZvQ4GfWehiby";
-answer="Step 11: Place the rechargeable battery correctly and secure it with cable tie.";
 }
 
 else if(question.includes("potentiometer") || question.includes("volume")){
 image="https://lh3.googleusercontent.com/d/11YaXnL26I5P1HKFTgPykvDsmBkIE9eDc";
-answer="Step 17: Insert the potentiometer module and tighten the nut. Then place the volume cap.";
 }
 
 else if(question.includes("mic")){
 image="https://lh3.googleusercontent.com/d/1mersmM8mIrjtop5QLREZDRK70irakd4S";
-answer="Step 4: Insert the Mic Jack and Type-C port into the panel carefully.";
-}
-
-else{
-answer="Try asking about battery, microphone, or volume control.";
 }
 
 document.getElementById("image").innerHTML="<img src='"+image+"'>";
-document.getElementById("answer").innerText=answer;
+
+const response = await fetch("https://eoya0pys5sgrwzp.m.pipedream.net",{
+method:"POST",
+headers:{'Content-Type':'application/json'},
+body:JSON.stringify({question:question})
+});
+
+const text = await response.text();
+
+document.getElementById("answer").innerText=text;
 
 }
-
 </script>
 
 </body>
