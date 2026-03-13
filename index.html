@@ -48,14 +48,43 @@
 <br><br>
 
 <button onclick="getHelp()">Get Help</button>
+  
+<div style="margin-top:30px;">
+<img id="stepImage" src="" width="400">
+</div>
 
 <br>
-
-<img src="https://lh3.googleusercontent.com/d/16A_kQ_4BwmXBxNwjQWb4ahfq1GGZsbmQ">
 
 <p id="response"></p>
 
 <script>
+const stepImages = {
+
+1: "https://lh3.googleusercontent.com/d/16A_kQ_4BwmXBxNwjQWb4ahfq1GGZsbmQ",
+2: "https://lh3.googleusercontent.com/d/136KTuZe4rcfgksIW2lTurHlxwQWMEwJV",
+3: "https://lh3.googleusercontent.com/d/1fwLQmR_ZDXUVsY02H1CSyty5_w0XNZBb",
+4: "https://lh3.googleusercontent.com/d/1mersmM8mIrjtop5QLREZDRK70irakd4S",
+5: "https://lh3.googleusercontent.com/d/1LteKDmRjVuI3g3sawL-8mo4mkaYszvrM",
+6: "https://lh3.googleusercontent.com/d/1WcKsdazLUMH3lmqlDQifshOb-QRLw6zR",
+7: "https://lh3.googleusercontent.com/d/1z4ariiBhc_rn10I9fwpdbXiu0gtognr9",
+8: "https://lh3.googleusercontent.com/d/13PV1KeUxCB8UKOuLs4P5VLQH-ia-_kEw",
+9: "https://lh3.googleusercontent.com/d/10rcnV4whfRDAsXmUJaaWM0fU99UDOoJN",
+10:"https://lh3.googleusercontent.com/d/1ItlX0n8R-3g8haUPhKSuVwSzmC6ZH3dh",
+11:"https://lh3.googleusercontent.com/d/1738BJTX9RWcECKIPJvlkZvQ4GfWehiby",
+12:"https://lh3.googleusercontent.com/d/1t14ZfO4gD3j2jUQX7tPrgjame1NAS2x-",
+13:"https://lh3.googleusercontent.com/d/1eJGhP61SJD4lh3qvUw2bH199Bt1VDeE1",
+14:"https://lh3.googleusercontent.com/d/1H27_jhWl_Da70rUNf8QiBZ_ZlA8W3rC5",
+15:"https://lh3.googleusercontent.com/d/1-HDPTp9Tfp4ieQcjKZYiYFs-s4xoKCFz",
+16:"https://lh3.googleusercontent.com/d/1dq975bdKLxmzRGz5yL0w1mcQPT5vT6f_",
+17:"https://lh3.googleusercontent.com/d/11YaXnL26I5P1HKFTgPykvDsmBkIE9eDc",
+18:"https://lh3.googleusercontent.com/d/1Y3VYdwM_lSDRj0_ttSNJp4Vev6TiPgo4",
+19:"https://lh3.googleusercontent.com/d/1gPbsNPd_aIqk6nSXLnjF5vycUMHAhKh_",
+20:"https://lh3.googleusercontent.com/d/1n-wOnY7uRt0NJW4wR5hOBxewFqVlzVXK",
+21:"https://lh3.googleusercontent.com/d/1WU2aPpUI7aJCd7hEq72_SYLiJtAsiBfc",
+22:"https://lh3.googleusercontent.com/d/1KKsbGyVJis1hdzMzJxtubYMkvQOV0NTP",
+23:"https://lh3.googleusercontent.com/d/1WIhFnvLot8ErIHPp6q9MbkVBhgTavSpK"
+
+};
 async function getHelp() {
 
   const question = document.querySelector("input").value;
