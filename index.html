@@ -1,91 +1,53 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-<title>DIY Karaoke STEM Mentor</title>
-
-<style>
-
-body{
-font-family: Arial;
-text-align:center;
-margin:40px;
-}
-
-input{
-width:60%;
-padding:12px;
-font-size:16px;
-}
-
-button{
-padding:10px 20px;
-font-size:16px;
-margin-top:10px;
-}
-
-img{
-max-width:300px;
-margin-top:20px;
-}
-
-#answer{
-margin-top:20px;
-font-size:18px;
-}
-
-</style>
-
+  <title>DIY Karaoke STEM Mentor</title>
 </head>
 
 <body>
 
 <h1>DIY Karaoke STEM Mentor</h1>
-
 <p>Ask a question while assembling your Karaoke Kit</p>
 
-<input id="question" placeholder="Example: how to connect battery">
+<input type="text" id="question" placeholder="Ask your question">
+<br><br>
+
+<button onclick="getHelp()">Get Help</button>
 
 <br><br>
 
-<button onclick="showStep()">Get Help</button>
+<img src="battery-step.png" width="400">
 
-<div id="image"></div>
-
-<div id="answer"></div>
+<p id="response"></p>
 
 <script>
+async function getHelp() {
 
-async function showStep(){
+  const question = document.querySelector("input").value;
 
-let question=document.getElementById("question").value.toLowerCase();
+  try {
 
-let image="";
-let answer="";
+    const response = await fetch("https://eoya0pys5sgrwzp.m.pipedream.net", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        question: question
+      })
+    });
 
-if(question.includes("battery")){
-image="https://lh3.googleusercontent.com/d/1738BJTX9RWcECKIPJvlkZvQ4GfWehiby";
-}
+    const data = await response.json();
 
-else if(question.includes("potentiometer") || question.includes("volume")){
-image="https://lh3.googleusercontent.com/d/11YaXnL26I5P1HKFTgPykvDsmBkIE9eDc";
-}
+    if (data.success) {
+      document.getElementById("response").innerText = data.message;
+    } else {
+      document.getElementById("response").innerText = "Error in workflow";
+    }
 
-else if(question.includes("mic")){
-image="https://lh3.googleusercontent.com/d/1mersmM8mIrjtop5QLREZDRK70irakd4S";
-}
-
-document.getElementById("image").innerHTML="<img src='"+image+"'>";
-
-const response = await fetch("https://eoya0pys5sgrwzp.m.pipedream.net",{
-method:"POST",
-headers:{'Content-Type':'application/json'},
-body:JSON.stringify({question:question})
-});
-
-const data = await response.json();
-
-document.getElementById("response").innerText = data.answer;
+  } catch (error) {
+    document.getElementById("response").innerText = "Connection error";
+  }
 
 }
 </script>
