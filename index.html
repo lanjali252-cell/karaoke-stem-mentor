@@ -102,6 +102,20 @@ async function getHelp() {
   })
 });
     const data = await response.json();
+    const text = data.message;
+
+document.getElementById("response").innerText = text;
+
+// Detect STEP number
+const stepMatch = text.match(/STEP:(\d+)/);
+
+if(stepMatch){
+
+const stepNumber = stepMatch[1];
+
+document.getElementById("stepImage").src = stepImages[stepNumber];
+
+}
 
     if(data.success){
       document.getElementById("response").innerText = data.message;
