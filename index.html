@@ -2,21 +2,56 @@
 <html>
 <head>
   <title>DIY Karaoke STEM Mentor</title>
+
+  <style>
+    body{
+      font-family: Arial, sans-serif;
+      text-align:center;
+      margin-top:40px;
+    }
+
+    input{
+      width:400px;
+      padding:8px;
+      font-size:16px;
+    }
+
+    button{
+      padding:8px 18px;
+      font-size:16px;
+      margin-top:10px;
+      cursor:pointer;
+    }
+
+    img{
+      margin-top:40px;
+      width:350px;
+    }
+
+    #response{
+      margin-top:25px;
+      font-size:18px;
+      max-width:600px;
+      margin-left:auto;
+      margin-right:auto;
+    }
+  </style>
 </head>
 
 <body>
 
 <h1>DIY Karaoke STEM Mentor</h1>
+
 <p>Ask a question while assembling your Karaoke Kit</p>
 
-<input type="text" id="question" placeholder="Ask your question">
+<input type="text" placeholder="Ask your question">
 <br><br>
 
 <button onclick="getHelp()">Get Help</button>
 
-<br><br>
+<br>
 
-<img src="battery-step.png" width="400">
+<img src="https://drive.google.com/uc?export=view&id=YOUR_IMAGE_ID">
 
 <p id="response"></p>
 
@@ -27,25 +62,27 @@ async function getHelp() {
 
   try {
 
-    const response = await fetch("https://eoya0pys5sgrwzp.m.pipedream.net", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
+    const response = await fetch("https://eoya0pys5sgrwzp.m.pipedream.net",{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
       },
-      body: JSON.stringify({
-        question: question
+      body:JSON.stringify({
+        question:question
       })
     });
 
     const data = await response.json();
 
-    if (data.success) {
+    if(data.success){
       document.getElementById("response").innerText = data.message;
-    } else {
+    }
+    else{
       document.getElementById("response").innerText = "Error in workflow";
     }
 
-  } catch (error) {
+  }
+  catch(err){
     document.getElementById("response").innerText = "Connection error";
   }
 
