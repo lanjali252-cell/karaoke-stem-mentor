@@ -112,11 +112,14 @@ const type = typeMatch ? typeMatch[1] : "AI";
 const stepMatch = text.match(/STEP:(\d+)/);
 const step = stepMatch ? parseInt(stepMatch[1]) : 0;
 
-if(type === "IMAGE" || type === "BOTH"){
+if((type === "IMAGE" || type === "BOTH") && step > 0){
 
   const img = document.getElementById("stepImage");
-  img.src = stepImages[step];
-  img.style.display = "block";
+
+  if(STEP_IMAGES[step]){
+    img.src = STEP_IMAGES[step];
+    img.style.display = "block";
+  }
 
 }
 else{
