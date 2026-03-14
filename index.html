@@ -106,26 +106,28 @@ const text = data.message;
 
 document.getElementById("response").innerText = text;
 
-const typeMatch = text.match(/TYPE:(IMAGE|AI|BOTH)/);
-const type = typeMatch ? typeMatch[1] : "AI";
+// Extract STEP number from response
+const stepMatch = text.match(/STEP\s*:?(\d+)/i);
 
-const stepMatch = text.match(/STEP:(\d+)/);
-const step = stepMatch ? parseInt(stepMatch[1]) : 0;
+let step = 0;
 
-if((type === "IMAGE" || type === "BOTH") && step > 0){
+if(stepMatch){
+  step = parseInt(stepMatch[1]);
+}
 
-  const img = document.getElementById("stepImage");
+// Get image element
+const img = document.getElementById("stepImage");
 
-  if(stepImages[step]){
-    img.src = stepImages[step];
-    img.style.display = "block";
-  }
+// Check if step exists in dataset
+if(step > 0 && stepImages[step]){
+
+  img.src = stepImages[step];
+  img.style.display = "block";
 
 }
 else{
 
-  document.getElementById("stepImage").style.display = "none";
-
+  img.style.display = "none";
 }
 
   }
