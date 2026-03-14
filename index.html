@@ -50,7 +50,7 @@
 <button onclick="getHelp()">Get Help</button>
   
 <div style="margin-top:30px;">
-<img id="stepImage" src="" width="400">
+<img id="stepImage" src="" width="400" style="display:none;">
 </div>
 
 <br>
@@ -116,8 +116,8 @@ if((type === "IMAGE" || type === "BOTH") && step > 0){
 
   const img = document.getElementById("stepImage");
 
-  if(STEP_IMAGES[step]){
-    img.src = STEP_IMAGES[step];
+  if(stepImages[step]){
+    img.src = stepImages[step];
     img.style.display = "block";
   }
 
