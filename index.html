@@ -101,28 +101,29 @@ async function getHelp() {
     question: question
   })
 });
-    const data = await response.json();
-    const text = data.message;
+const data = await response.json();
+const text = data.message;
 
 document.getElementById("response").innerText = text;
 
-// Detect STEP number
+const typeMatch = text.match(/TYPE:(IMAGE|AI|BOTH)/);
+const type = typeMatch ? typeMatch[1] : "AI";
+
 const stepMatch = text.match(/STEP:(\d+)/);
+const step = stepMatch ? parseInt(stepMatch[1]) : 0;
 
-if(stepMatch){
+if(type === "IMAGE" || type === "BOTH"){
 
-const stepNumber = stepMatch[1];
-
-document.getElementById("stepImage").src = stepImages[stepNumber];
+  const img = document.getElementById("stepImage");
+  img.src = stepImages[step];
+  img.style.display = "block";
 
 }
+else{
 
-    if(data.success){
-      document.getElementById("response").innerText = data.message;
-    }
-    else{
-      document.getElementById("response").innerText = "Error in workflow";
-    }
+  document.getElementById("stepImage").style.display = "none";
+
+}
 
   }
   catch(err){
